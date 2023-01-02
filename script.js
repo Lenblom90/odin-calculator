@@ -26,3 +26,12 @@ function operate(a,b,operator){
             return divide(a,b);
     }
 }
+
+let displayValue = "0";
+const display = document.querySelector('.calculatorDisplay');
+display.textContent = displayValue;
+
+function populateDisplay(item, oldValue){
+    displayValue = oldValue + item;
+    display.textContent = displayValue;
+}
