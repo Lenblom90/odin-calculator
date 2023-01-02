@@ -42,13 +42,23 @@ const buttons = document.querySelectorAll('.calculatorButtons button');
 buttons.forEach((button) => {
     if(button.textContent === "="){
         button.addEventListener('click', () => {
-        operatorArray = ["+","-","*","/"];
-        const operator = Array.from(displayValue).find((item) => operatorArray.includes(item));
-        if (operator.length === 1){
-            const [a,b] = displayValue.split(operator);
-            displayValue = operate(a,b,operator);
-            display.textContent = displayValue;
-        }            
+        let inputValues = Array.from(displayValue);
+        const operatorArray = ["+","-","*","/"];
+        let operatorValues = [];
+        inputValues.forEach((item, index) => operatorArray.includes(item) ? operatorValues.push(index) : null);
+        let a = displayValue.substring(0,operatorValues[0]);
+        for (let i = 0; i < operatorValues.length; i++) {
+            let b = undefined;
+            if(operatorValues.length > 1){
+                b = displayValue.substring(operatorValues[i] + 1, operatorValues[i+1])
+            } else {
+                b = displayValue.substring(operatorValues[i] + 1);
+            }
+            a = operate(a,b,displayValue[operatorValues[i]]);  
+        }
+        
+        displayValue = a;
+        display.textContent = displayValue;
         });
     } else {
         button.addEventListener('click', () => populateDisplay(button.textContent, displayValue));
