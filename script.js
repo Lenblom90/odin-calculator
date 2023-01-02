@@ -50,7 +50,12 @@ buttons.forEach((button) => {
         const operatorArray = ["+","-","*","/"];
         let operatorValues = [];
         inputValues.forEach((item, index) => operatorArray.includes(item) ? operatorValues.push(index) : null);
-        let a = displayValue.substring(0,operatorValues[0]);
+        
+        let a = 0;
+        if(operatorValues[0] !== 0){
+            a = displayValue.substring(0,operatorValues[0]);   
+        }
+
         for (let i = 0; i < operatorValues.length; i++) {
             let b = undefined;
             if(operatorValues.length > 1){
@@ -61,8 +66,8 @@ buttons.forEach((button) => {
             a = operate(a,b,displayValue[operatorValues[i]]);  
         }
         
-        displayValue = a;
-        display.textContent = displayValue;
+        displayValue = "";
+        display.textContent = a;
         });
     } else {
         button.addEventListener('click', () => populateDisplay(button.textContent, displayValue));
@@ -74,3 +79,9 @@ clearButton.addEventListener('click', () => {
     displayValue = "";
     display.textContent = displayValue;
 });
+
+const backButton = document.querySelector('.backButton');
+backButton.addEventListener('click',() => {
+    displayValue = displayValue.substring(0,displayValue.length-1);
+    display.textContent = displayValue;
+})

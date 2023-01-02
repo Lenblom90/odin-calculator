@@ -1,0 +1,42 @@
+.calculatorDisplay {
+    width: auto;
+    height: 3vh;
+    text-align: right;
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 2px;
+    max-width: 300px;
+}
+
+.calculatorButtons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 3px;
+    margin: 2px;
+    max-width: 300px;
+    padding: 10px;
+}
+
+.calculatorButtons button{
+    padding: 10px;
+    flex-basis: 50px;
+}
+
+.calculatorButtons .operator{
+    background-color: #858585;
+}
+
+.functionButtons {
+    display: flex;
+    justify-content: end;
+    gap: 2px;
+    margin: 2px;
+    padding: 10px;
+    max-width: 300px;
+}
+
+.functionButtons button{
+    padding: 10px;
+    flex-basis: 50px;
+}
